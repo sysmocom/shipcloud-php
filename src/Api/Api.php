@@ -31,10 +31,14 @@ abstract class Api implements ApiInterface
 
     public function execute($httpMethod, $uri, array $parameters = [], array $body = [])
     {
-        return $this->getClient()->{$httpMethod}("{$uri}", [
+        error_log("[shipcloud-php] httpMethod=" . json_encode($httpMethod) . ", uri=" . json_encode($uri) . ", parameters=" . json_encode($parameters) . ", body=" . json_encode($body));
+        $ret = $this->getClient()->{$httpMethod}("{$uri}", [
             'query'       => $parameters,
             'json' => $body
         ]);
+
+        error_log("[shipcloud-php] => " . json_encode($ret));
+        return $ret;
     }
 
     protected function getClient()
