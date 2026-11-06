@@ -19,6 +19,7 @@ class Client extends \GuzzleHttp\Client implements ClientInterface
         parent::__construct([
             'base_uri' => 'https://api.shipcloud.io/v1/',
             'auth' => [$apiKey, null],
+            'timeout' => 10.0,
             'headers' => [
                 'Content-Type' => 'application/json'
             ]
